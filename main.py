@@ -4,6 +4,12 @@ ENTRY = 'I quit. I fired every minute since March, never missed one, and got tha
 MAX_CHARS = 140  # the gate accepts 1..140 characters
 
 
+def entry_text():
+    text = ENTRY.strip()
+    assert 1 <= len(text) <= MAX_CHARS, "entry must fit the gate"
+    return text
+
+
 def main():
     out_dir = "/output"
     try:
@@ -12,7 +18,7 @@ def main():
     except OSError:
         path = "entry.txt"
     with open(path, "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+        f.write(entry_text())
 
 
 if __name__ == "__main__":
